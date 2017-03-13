@@ -22,7 +22,7 @@ const readline = require('readline');
   // });
 
 var Game = function() {
-  this.board = [' _ _ _\r\n|_|_|_|\r\n|_|_|_|\r\n|_|_|_|\r\n'];
+  this.board = ' _ _ _\r\n|_|_|_|\r\n|_|_|_|\r\n|_|_|_|\r\n';
 
 }
 
@@ -45,20 +45,21 @@ const rl = readline.createInterface({
 
 let playerNum = 1;
 playerNum = playerNum = 1 ? 2 : 1;
-rl.question(this.board.toString(), (move) => {
+
   // TODO: Log the answer in a database
-  console.log(`Please enter your move Player ${playerNum}: ${move}`);
+  console.log();
   //if a player wins
-  console.log(Array.isArray(this.board));
-  var boardArray = this.board.split(' ');
-  console.log('53', boardArray);
-  rl.close();
-  //else
+  //console.log(Array.isArray(this.board));
+
+    rl.question(`Please enter your move Player, input coordinates ${playerNum}`, (move) => {
+  rl.on('line', (input) => {
+
+     var boardArray = this.board.split('|');
+      boardArray[input[0], input[1]] = 'X';
+      this.board = boardArray.join('|');
+      console.log(this.board);
+   });
 });
-
- // rl.on('line', (input) => { console.log('57', input) })
-
-
  }
 
 
